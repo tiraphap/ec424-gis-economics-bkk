@@ -1,0 +1,724 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>EC424 — GIS for Economics</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css" id="theme">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --accent: #c8102e;
+      --accent-soft: #fff0f1;
+      --green: #2e7d32;
+      --blue: #0969da;
+      --blue-soft: #ddf4ff;
+      --orange: #f5a623;
+      --dark: #1a1a1a;
+      --muted: #666;
+      --bg-soft: #f8f9fa;
+    }
+    .reveal { font-family: 'Sarabun', sans-serif; font-size: 26px; }
+    .reveal h1, .reveal h2, .reveal h3 {
+      font-family: 'Sarabun', sans-serif;
+      text-transform: none;
+      letter-spacing: normal;
+      color: var(--dark);
+    }
+    .reveal h1 { font-size: 2.2em; font-weight: 700; }
+    .reveal h2 { font-size: 1.5em; font-weight: 600; color: var(--accent); }
+    .reveal h3 { font-size: 1.15em; font-weight: 600; margin-top: 0.3em; }
+    .reveal code, .reveal pre { font-family: 'JetBrains Mono', monospace; }
+    .reveal pre { box-shadow: none; font-size: 0.55em; margin: 0.3em auto; width: 95%; }
+    .reveal pre code { padding: 14px 20px; border-radius: 6px; }
+    .reveal table { font-size: 0.7em; margin: 0.3em auto; }
+    .reveal table th { background: var(--bg-soft); font-weight: 600; }
+    .reveal table th, .reveal table td { padding: 7px 12px; border-bottom: 1px solid #e0e0e0; }
+    .reveal blockquote {
+      font-style: normal;
+      border-left: 4px solid var(--accent);
+      background: var(--bg-soft);
+      padding: 12px 20px;
+      font-size: 0.85em;
+    }
+    .reveal .subtitle { color: var(--muted); font-size: 0.72em; margin-top: -0.3em; margin-bottom: 0.6em; }
+    .reveal .footer { position: fixed; bottom: 12px; left: 16px; color: var(--muted); font-size: 13px; }
+    .reveal ul li, .reveal ol li { margin: 0.25em 0; }
+    .reveal .small { font-size: 0.72em; }
+    .reveal .tiny { font-size: 0.6em; }
+    .reveal .center { text-align: center; }
+    .reveal .left { text-align: left; }
+    .reveal .accent { color: var(--accent); font-weight: 600; }
+
+    /* Boxes */
+    .reveal .boxed {
+      background: var(--bg-soft);
+      border-left: 4px solid var(--accent);
+      padding: 12px 18px;
+      margin: 0.4em 0;
+      font-size: 0.82em;
+      text-align: left;
+      border-radius: 0 4px 4px 0;
+    }
+    .reveal .jargon-box {
+      background: linear-gradient(to right, var(--blue-soft), transparent);
+      border-left: 4px solid var(--blue);
+      padding: 10px 16px;
+      margin-top: 0.8em;
+      font-size: 0.68em;
+      text-align: left;
+      border-radius: 0 4px 4px 0;
+    }
+    .reveal .jargon-box strong { color: var(--blue); }
+    .reveal .jargon-box .term { display: block; margin: 3px 0; }
+    .reveal .jargon-box .term::before { content: "💡 "; }
+
+    .reveal .analogy {
+      background: #fffbea;
+      border-left: 4px solid var(--orange);
+      padding: 12px 18px;
+      margin: 0.4em 0;
+      font-size: 0.82em;
+      text-align: left;
+      border-radius: 0 4px 4px 0;
+    }
+    .reveal .analogy strong { color: #b8740e; }
+
+    /* Interactive poll style */
+    .reveal .poll {
+      background: linear-gradient(135deg, #fff9e6 0%, #fff3b0 100%);
+      border: 2px dashed var(--orange);
+      padding: 20px 30px;
+      margin: 0.8em auto;
+      border-radius: 12px;
+      font-size: 0.9em;
+      text-align: center;
+      width: 85%;
+    }
+    .reveal .poll .q {
+      color: var(--dark);
+      font-weight: 700;
+      font-size: 1.1em;
+      margin-bottom: 0.6em;
+    }
+    .reveal .poll .options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6em;
+      margin-top: 0.5em;
+    }
+    .reveal .poll .opt {
+      background: white;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 2px solid #ddd;
+      font-size: 0.85em;
+      text-align: left;
+    }
+    .reveal .poll .opt strong { color: var(--accent); display: inline-block; margin-right: 8px; }
+
+    /* Glossary grid */
+    .reveal .glossary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5em 1em;
+      text-align: left;
+      font-size: 0.66em;
+      margin-top: 0.6em;
+    }
+    .reveal .glossary-grid .item {
+      padding: 6px 10px;
+      background: var(--bg-soft);
+      border-radius: 4px;
+      border-left: 3px solid var(--accent);
+    }
+    .reveal .glossary-grid .item strong { color: var(--accent); }
+
+    /* Two column */
+    .reveal .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5em;
+      text-align: left;
+    }
+
+    /* Hook/emphasis */
+    .reveal .hook {
+      font-size: 1.15em;
+      line-height: 1.5;
+      text-align: center;
+      margin: 1em 0;
+    }
+    .reveal .big-q {
+      font-size: 1.3em;
+      color: var(--accent);
+      font-weight: 600;
+      text-align: center;
+      margin: 0.5em 0;
+    }
+
+    /* Band color strip */
+    .reveal .band-strip {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 4px;
+      margin: 0.5em 0;
+      font-size: 0.7em;
+    }
+    .reveal .band-strip > div {
+      padding: 10px 6px;
+      text-align: center;
+      color: white;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    /* Fragment highlight */
+    .reveal .fragment.highlight-accent.visible { color: var(--accent); font-weight: 700; }
+    .reveal .reveal-answer {
+      background: #e8f5e9;
+      border-left: 4px solid var(--green);
+      padding: 10px 16px;
+      margin-top: 0.5em;
+      border-radius: 0 4px 4px 0;
+      font-size: 0.82em;
+      text-align: left;
+    }
+    .reveal .reveal-answer strong { color: var(--green); }
+  </style>
+</head>
+<body>
+
+<div class="reveal">
+  <div class="footer">EC424 · GIS for Economics · ผศ.ดร.ถิรภาพ ฟักทอง</div>
+  <div class="slides">
+
+    <!-- =========== TITLE =========== -->
+    <section data-background-color="#fafafa">
+      <h1 style="margin-top: 1em;">GIS<br><span style="color: var(--accent);">สำหรับเศรษฐศาสตร์</span></h1>
+      <p class="subtitle" style="margin-top: 1em; font-size: 1em;">EC424 · Data Science for Economics and Finance</p>
+      <p class="subtitle">ใช้ภาพถ่ายดาวเทียมวิเคราะห์การขยายตัวของเมือง + จำลองอนาคต</p>
+      <p style="margin-top: 2em; font-size: 0.7em; color: #999;">ผศ.ดร.ถิรภาพ ฟักทอง · คณะเศรษฐศาสตร์ มหาวิทยาลัยธรรมศาสตร์</p>
+    </section>
+
+    <!-- =========== HOOK =========== -->
+    <section>
+      <h2>ทำไม Economist ต้องสนใจ GIS?</h2>
+      <p class="hook left" style="margin-top: 0.5em;">
+        ลองคิดดู — ถ้าคุณเป็นนักวิจัย/ผู้ดำเนินนโยบาย แล้วอยาก <em>วัด GDP รายจังหวัด</em> แต่สถิติทางการช้า 2-3 ปี คุณจะทำยังไง?
+      </p>
+      <div class="reveal-answer fragment">
+        <strong>✨ Satellite imagery!</strong><br>
+        <span class="small">
+        · <strong>Night lights</strong> (DMSP, VIIRS) → proxy GDP เกือบ real-time · ใช้กันมาแล้วโดย World Bank, IMF<br>
+        · <strong>Built-up area growth</strong> → ดัชนีเมืองเติบโต<br>
+        · <strong>NDVI timeseries</strong> → ทำนาย crop yield → รายได้เกษตรกร
+        </span>
+      </div>
+      <div class="boxed fragment" style="margin-top: 1em;">
+        <strong>วันนี้เราจะทำ:</strong> เปิดภาพดาวเทียม กรุงเทพฯ + ปริมณฑล (2015 vs 2025) → แยกประเภทที่ดิน → วัดการเปลี่ยนแปลง → จำลองอนาคต
+      </div>
+    </section>
+
+    <!-- =========== FLOW =========== -->
+    <section>
+      <h2>แผน 3 ชั่วโมง</h2>
+      <div class="two-col">
+        <div class="boxed">
+          <strong class="accent">Part 1 · Foundations</strong>
+          <ul class="small" style="margin-top: 0.4em;">
+            <li>Why GIS for Econ</li>
+            <li>Remote sensing basics</li>
+            <li>Spectral signatures</li>
+            <li>Indices (NDVI, NDWI, NDBI)</li>
+          </ul>
+        </div>
+        <div class="boxed">
+          <strong class="accent">Part 2 · Analysis</strong>
+          <ul class="small" style="margin-top: 0.4em;">
+            <li>ML classification (8 classes)</li>
+            <li>Urban expansion (2015→2025)</li>
+            <li>Area change statistics</li>
+            <li>CA-Markov simulation</li>
+            <li>Economic applications</li>
+          </ul>
+        </div>
+      </div>
+      <p class="small" style="margin-top: 1em;">
+        📓 รันบน <strong>Google Colab</strong> ฟรี · ไม่ต้องใช้ GPU
+      </p>
+    </section>
+
+    <!-- =========== GLOSSARY 1 =========== -->
+    <section>
+      <h2>📖 ศัพท์ที่ควรรู้ (1/2) — พื้นฐาน</h2>
+      <div class="glossary-grid">
+        <div class="item"><strong>GIS</strong> — Geographic Information System · ระบบจัดการข้อมูลเชิงพื้นที่</div>
+        <div class="item"><strong>Remote sensing</strong> — การดูโลกจากระยะไกล (ดาวเทียม/โดรน)</div>
+        <div class="item"><strong>Landsat</strong> — ดาวเทียม NASA (ฟรี) ถ่ายโลกทุก 16 วัน ความละเอียด 30m</div>
+        <div class="item"><strong>Pixel</strong> — หน่วยย่อยที่สุดของภาพ · Landsat = 30m × 30m</div>
+        <div class="item"><strong>Raster</strong> — ข้อมูลภาพแบบ grid (ตาราง)</div>
+        <div class="item"><strong>Vector</strong> — ข้อมูลแบบ point / line / polygon</div>
+        <div class="item"><strong>CRS</strong> — Coordinate Reference System (ระบบพิกัด เช่น WGS84)</div>
+        <div class="item"><strong>AOI</strong> — Area of Interest (bbox ที่เราสนใจ)</div>
+        <div class="item"><strong>Band</strong> — ช่วงความถี่แสงที่ดาวเทียมวัด</div>
+        <div class="item"><strong>Spectral</strong> — เกี่ยวกับสเปกตรัมของแสง</div>
+      </div>
+    </section>
+
+    <!-- =========== GLOSSARY 2 =========== -->
+    <section>
+      <h2>📖 ศัพท์ที่ควรรู้ (2/2) — Analysis</h2>
+      <div class="glossary-grid">
+        <div class="item"><strong>LULC</strong> — Land Use / Land Cover · ประเภทที่ดิน (พืช, เมือง, น้ำ, ...)</div>
+        <div class="item"><strong>NDVI</strong> — Normalized Difference Vegetation Index · ดัชนีพืช</div>
+        <div class="item"><strong>NDWI</strong> — Normalized Difference Water Index · ดัชนีน้ำ</div>
+        <div class="item"><strong>NDBI</strong> — Normalized Difference Built-up Index · ดัชนีเมือง</div>
+        <div class="item"><strong>Classification</strong> — แยกประเภท (ใช้ ML)</div>
+        <div class="item"><strong>Training data</strong> — จุดที่ label แล้ว ใช้สอน ML</div>
+        <div class="item"><strong>Random Forest</strong> — ML algorithm ที่ใช้ decision trees หลายต้น</div>
+        <div class="item"><strong>Transition matrix</strong> — ตาราง P(class A → class B)</div>
+        <div class="item"><strong>CA-Markov</strong> — Cellular Automata + Markov Chain จำลองอนาคต</div>
+        <div class="item"><strong>STAC</strong> — SpatioTemporal Asset Catalog · มาตรฐาน catalog ภาพดาวเทียม</div>
+      </div>
+    </section>
+
+    <!-- =========== PART 1 DIVIDER =========== -->
+    <section data-background-color="#c8102e" data-background-gradient="linear-gradient(135deg, #c8102e 0%, #8a0a1f 100%)">
+      <h1 style="color: white;">Part 1</h1>
+      <h2 style="color: white; border: none;">Remote Sensing Foundations</h2>
+    </section>
+
+    <!-- =========== WHAT IS LANDSAT =========== -->
+    <section>
+      <h2>Landsat ถ่ายอะไรบ้าง?</h2>
+      <p class="left">ดาวเทียม Landsat บันทึกความสว่างใน <strong>6 ย่านคลื่นหลัก</strong> (ตาคนเห็นแค่ 3 ย่าน)</p>
+      <div class="band-strip">
+        <div style="background: #4a7ab8;">Blue<br><span class="tiny">0.45 μm</span></div>
+        <div style="background: #5ba862;">Green<br><span class="tiny">0.56 μm</span></div>
+        <div style="background: #c0392b;">Red<br><span class="tiny">0.66 μm</span></div>
+        <div style="background: #7a3e7a;">NIR<br><span class="tiny">0.86 μm</span></div>
+        <div style="background: #555;">SWIR-1<br><span class="tiny">1.6 μm</span></div>
+        <div style="background: #222;">SWIR-2<br><span class="tiny">2.2 μm</span></div>
+      </div>
+      <p class="left small">
+        Blue, Green, Red = สีที่ตามองเห็น (RGB)<br>
+        <strong>NIR (Near Infrared)</strong> = ตามองไม่เห็น · <em>พืชสะท้อน NIR มาก</em> (กุญแจของการแยกพืช)<br>
+        <strong>SWIR (Short-Wave Infrared)</strong> = บอกความชื้น + วัตถุก่อสร้าง
+      </p>
+      <div class="jargon-box">
+        <strong>μm</strong> = micrometer (10⁻⁶ เมตร) หน่วยวัดคลื่นแสง
+      </div>
+    </section>
+
+    <!-- =========== POLL 1 =========== -->
+    <section>
+      <h2>🤔 Poll: คุณคิดว่า...</h2>
+      <div class="poll">
+        <div class="q">ในภาพดาวเทียม NIR (Near Infrared) — <br>วัตถุไหนสะท้อนมากที่สุด?</div>
+        <div class="options">
+          <div class="opt"><strong>A.</strong> น้ำทะเล</div>
+          <div class="opt"><strong>B.</strong> ป่าไม้สุขภาพดี</div>
+          <div class="opt"><strong>C.</strong> ถนนคอนกรีต</div>
+          <div class="opt"><strong>D.</strong> ทรายทะเล</div>
+        </div>
+      </div>
+      <div class="reveal-answer fragment">
+        <strong>คำตอบ: B — ป่าไม้สุขภาพดี 🌲</strong><br>
+        <span class="small">
+        Chlorophyll ในใบไม้ดูดซับ Red แต่สะท้อน NIR มาก (ธรรมชาติทำให้ใบไม่ร้อน)<br>
+        → นี่คือเหตุผลที่ NDVI = (NIR - Red) / (NIR + Red) วัดพืชได้ดี
+        </span>
+      </div>
+    </section>
+
+    <!-- =========== SPECTRAL SIGNATURES =========== -->
+    <section>
+      <h2>Spectral Signatures — "ลายนิ้วมือ" ของวัตถุ</h2>
+      <p class="left">แต่ละวัตถุสะท้อนแสงใน 6 bands ด้วย pattern เฉพาะ:</p>
+      <div class="boxed" style="font-size: 0.82em;">
+        <strong>🌲 พืช:</strong> Red ต่ำ → NIR สูงมาก (chlorophyll) → SWIR ปานกลาง<br>
+        <strong>🏙️ เมือง:</strong> ค่อนข้างสูงทุก band โดยเฉพาะ SWIR (วัตถุก่อสร้าง)<br>
+        <strong>💧 น้ำ:</strong> Blue สูง → NIR/SWIR ต่ำมาก (น้ำดูดซับ)<br>
+        <strong>🌾 เกษตร:</strong> คล้ายพืชแต่ขึ้นกับช่วงเวลา (เก็บเกี่ยวแล้วจะต่ำ)
+      </div>
+      <div class="analogy">
+        <strong>อุปมา:</strong> เหมือน ECG ของคน — แต่ละคนมี pattern หัวใจต่างกัน
+        Spectral signature = "ECG" ของวัตถุ
+      </div>
+    </section>
+
+    <!-- =========== INDICES =========== -->
+    <section>
+      <h2>Spectral Indices — วัดเฉพาะที่สนใจ</h2>
+      <p class="left small">แทนใช้ทุก band เราเอา 2 bands มา <em>normalize</em> → ค่าอยู่ -1 ถึง +1</p>
+      <table>
+        <thead>
+          <tr><th>Index</th><th>สูตร</th><th>ใช้แยก</th><th>ค่าสูง = </th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>NDVI</strong></td><td>(NIR - Red) / (NIR + Red)</td><td>พืช</td><td>พืชสุขภาพดี</td></tr>
+          <tr><td><strong>NDWI</strong></td><td>(Green - NIR) / (Green + NIR)</td><td>น้ำ</td><td>แหล่งน้ำ</td></tr>
+          <tr><td><strong>NDBI</strong></td><td>(SWIR - NIR) / (SWIR + NIR)</td><td>เมือง</td><td>อาคาร/ถนน</td></tr>
+        </tbody>
+      </table>
+      <div class="analogy">
+        <strong>ทำไมต้อง Normalize?</strong><br>
+        เพราะค่าสัมบูรณ์เปลี่ยนตามแสงแดด · Normalize แล้วเทียบข้าม scene ได้
+      </div>
+      <div class="jargon-box">
+        <strong>Threshold rule of thumb:</strong> NDVI > 0.3 = พืช · NDWI > 0 = น้ำ · NDBI > -0.05 = เมือง
+      </div>
+    </section>
+
+    <!-- =========== PART 2 DIVIDER =========== -->
+    <section data-background-color="#c8102e" data-background-gradient="linear-gradient(135deg, #c8102e 0%, #8a0a1f 100%)">
+      <h1 style="color: white;">Part 2</h1>
+      <h2 style="color: white; border: none;">Urban Expansion Analysis</h2>
+    </section>
+
+    <!-- =========== LULC CLASSIFICATION =========== -->
+    <section>
+      <h2>LULC Classification — แยก 8 ประเภทที่ดิน</h2>
+      <p class="left small">Index 3 ตัวเห็นภาพคร่าว ๆ แต่ถ้าอยาก <strong>แยกได้ละเอียดกว่า</strong> ต้องใช้ ML</p>
+      <table>
+        <tbody>
+          <tr>
+            <td style="background:#006400;color:white;">🌲 Vegetation</td>
+            <td style="background:#FFA500;color:white;">🌿 Shrubland</td>
+            <td style="background:#90EE90;">🌾 Grassland</td>
+            <td style="background:#FFFF00;">🌾 Cropland</td>
+          </tr>
+          <tr>
+            <td style="background:#FF0000;color:white;">🏙️ Built-up</td>
+            <td style="background:#D3D3D3;">🏜️ Bareland</td>
+            <td style="background:#0000FF;color:white;">💧 Water body</td>
+            <td style="background:#000;color:white;">❔ Unclassified</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="boxed" style="font-size: 0.82em;">
+        <strong>Workflow:</strong>
+        <ol style="margin-top: 0.3em;">
+          <li>Training points (GeoJSON) — human label แล้ว ~หลายร้อยจุด</li>
+          <li>ดึงค่า 6 bands ที่แต่ละจุด → X (features)</li>
+          <li>Train Random Forest (X → class)</li>
+          <li>Apply model ทุก pixel ในภาพ → LULC map</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- =========== RANDOM FOREST =========== -->
+    <section>
+      <h2>Random Forest Intuition</h2>
+      <p class="left small">Random Forest = <strong>ป่าของ Decision Trees</strong> — แต่ละต้น vote แล้วเอา majority</p>
+      <div class="analogy">
+        <strong>อุปมา:</strong> เหมือน panel ผู้เชี่ยวชาญ 100 คน<br>
+        แต่ละคนเห็นข้อมูลแค่บางส่วน · vote → คำตอบของกลุ่ม<br>
+        → แม่นกว่าถามคนเดียว (ลด overfitting)
+      </div>
+      <pre><code class="language-python">from sklearn.ensemble import RandomForestClassifier
+
+model = RandomForestClassifier(
+    n_estimators=100,   # จำนวนต้นไม้
+    max_depth=20,       # ลึกสุดของแต่ละต้น
+    n_jobs=-1,          # ใช้ CPU ทุก core
+)
+model.fit(X_train, y_train)
+
+accuracy = model.score(X_test, y_test)</code></pre>
+      <div class="jargon-box">
+        <strong>n_estimators</strong> = จำนวนต้นไม้ (ยิ่งเยอะยิ่งดี แต่ช้าขึ้น · 100 โอเคสำหรับส่วนใหญ่)<br>
+        <strong>max_depth</strong> = ความลึกของ tree (มากไป = overfit)
+      </div>
+    </section>
+
+    <!-- =========== POLL 2 =========== -->
+    <section>
+      <h2>🤔 Poll: Random Forest ของเรา</h2>
+      <div class="poll">
+        <div class="q">ใน LULC 8 classes — คุณคิดว่า class ไหนจะ<br><em>แยกยากที่สุด</em> (accuracy ต่ำ)?</div>
+        <div class="options">
+          <div class="opt"><strong>A.</strong> Water body (น้ำ)</div>
+          <div class="opt"><strong>B.</strong> Built-up (เมือง)</div>
+          <div class="opt"><strong>C.</strong> Grassland vs Cropland</div>
+          <div class="opt"><strong>D.</strong> Vegetation (ป่า)</div>
+        </div>
+      </div>
+      <div class="reveal-answer fragment">
+        <strong>คำตอบ: C — Grassland vs Cropland 🌾</strong><br>
+        <span class="small">
+        ทั้งสอง class เป็นพืช NDVI คล้ายกัน แยกยาก<br>
+        ทางแก้: ใช้ SWIR ช่วย (ดิน), ใช้ timeseries (cropland เปลี่ยนตามฤดู)<br>
+        Water + Built-up จะแยกง่ายที่สุด
+        </span>
+      </div>
+    </section>
+
+    <!-- =========== CASE STUDY =========== -->
+    <section>
+      <h2>Case Study: กรุงเทพฯ + ปริมณฑล (2015 → 2025)</h2>
+      <p class="left small" style="margin-top: 0.5em;">
+        <strong>Bangkok</strong> — เมืองหลวงของไทย · ภาคกลาง · ~10 ล้านคน (รวมปริมณฑล)
+      </p>
+      <div class="two-col">
+        <div class="boxed">
+          <strong>ทำไม Bangkok?</strong>
+          <ul class="small" style="margin-top: 0.4em;">
+            <li>ภาคกลางของไทย → เกี่ยวข้องกับ นศ econ</li>
+            <li>urban สุดกับ rural ชัดเจน</li>
+            <li>ไม่มี training data → ใช้ pseudo-labeling</li>
+          </ul>
+        </div>
+        <div class="boxed">
+          <strong>เทคนิคเดียวกัน → ใช้ได้กับ:</strong>
+          <ul class="small" style="margin-top: 0.4em;">
+            <li>Chiang Mai, Phuket</li>
+            <li>Eastern Seaboard / Rayong</li>
+            <li>Isan cities (Khon Kaen, UBR)</li>
+          </ul>
+        </div>
+      </div>
+      <p class="center accent" style="margin-top: 1em;">→ Capstone idea: เปลี่ยน AOI เป็นเมืองที่คุณสนใจ (Chiang Mai, Phuket, EEC)!</p>
+    </section>
+
+    <!-- =========== POLL 3 =========== -->
+    <section>
+      <h2>🤔 Poll: 10 ปีของ BKK</h2>
+      <div class="poll">
+        <div class="q">ในช่วง 2015-2025 class ไหน<br><em>เพิ่มขึ้นมากที่สุด</em> ใน BKK?</div>
+        <div class="options">
+          <div class="opt"><strong>A.</strong> Built-up (เมือง)</div>
+          <div class="opt"><strong>B.</strong> Vegetation (ป่า)</div>
+          <div class="opt"><strong>C.</strong> Cropland (เกษตร)</div>
+          <div class="opt"><strong>D.</strong> Water body (น้ำ)</div>
+        </div>
+      </div>
+      <p class="small center" style="margin-top: 1em;">
+        🧠 เดาก่อน — เราจะเห็นคำตอบจริงตอนรัน notebook
+      </p>
+    </section>
+
+    <!-- =========== AREA CHANGE =========== -->
+    <section>
+      <h2>วัดการเปลี่ยนแปลง (pixel → km²)</h2>
+      <p class="left small">Landsat = 30m/pixel → 1 pixel = 900 m² = 0.0009 km²</p>
+      <pre><code class="language-python">def compute_area(lulc_map, pixel_area=900):
+    unique, counts = np.unique(lulc_map, return_counts=True)
+    return pd.DataFrame({
+        'class': unique,
+        'area_km2': counts * pixel_area / 1_000_000
+    })
+
+area_2015 = compute_area(lulc_2015)
+area_2025 = compute_area(lulc_2025)
+change = ((area_2025 - area_2015) / area_2015) * 100</code></pre>
+      <div class="boxed">
+        <strong>📊 ผลที่คาด:</strong>
+        <ul class="small" style="margin-top: 0.3em;">
+          <li>Built-up มักจะเพิ่ม (urbanization)</li>
+          <li>Cropland มักจะลด (ถูก convert เป็นเมือง)</li>
+          <li>Water body มักจะคงที่ (อาจเปลี่ยนตามฤดู/ภัยแล้ง)</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- =========== CA-MARKOV =========== -->
+    <section>
+      <h2>🔮 CA-Markov: จำลองอนาคต</h2>
+      <p class="left">ถ้ารู้ <strong>pattern การเปลี่ยนแปลง</strong> ในอดีต → จำลองต่อไปในอนาคตได้</p>
+      <div class="two-col">
+        <div class="boxed">
+          <strong>Markov Chain</strong>
+          <p class="small">P(next_class | current_class)<br>
+          คำนวณจาก 2015→2025 transition</p>
+        </div>
+        <div class="boxed">
+          <strong>Cellular Automata</strong>
+          <p class="small">แต่ละ pixel ดูเพื่อนบ้าน →<br>
+          pixel ถัดไปเป็นเมือง ก็มีโอกาสเป็นเมืองตาม</p>
+        </div>
+      </div>
+      <div class="analogy">
+        <strong>อุปมา (econ):</strong> เหมือนโมเดล network effect<br>
+        · Markov = trend โดยรวม (เมืองขยาย)<br>
+        · CA = spatial clustering (เมืองเติบโตติดเมือง ไม่ใช่กลางนา)
+      </div>
+    </section>
+
+    <!-- =========== TRANSITION MATRIX =========== -->
+    <section>
+      <h2>Transition Matrix (ตัวอย่าง)</h2>
+      <table>
+        <thead>
+          <tr><th>จาก → ไป</th><th>Vegetation</th><th>Cropland</th><th>Built-up</th><th>Water</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Vegetation</strong></td><td>0.85</td><td>0.08</td><td>0.05</td><td>0.02</td></tr>
+          <tr><td><strong>Cropland</strong></td><td>0.15</td><td>0.70</td><td style="background:#fff0f0;">0.13</td><td>0.02</td></tr>
+          <tr><td><strong>Built-up</strong></td><td>0.02</td><td>0.01</td><td style="background:#fff0f0;">0.97</td><td>0.00</td></tr>
+          <tr><td><strong>Water</strong></td><td>0.01</td><td>0.01</td><td>0.00</td><td>0.98</td></tr>
+        </tbody>
+      </table>
+      <p class="small left" style="margin-top: 0.6em;">
+        <strong>อ่านยังไง:</strong> แถวคือ class ปัจจุบัน · คอลัมน์คือ class ถัดไป · รวมกันแถวได้ 1.0
+      </p>
+      <div class="jargon-box">
+        <strong>ข้อสังเกต:</strong>
+        <span class="term">Built-up <code>P(→ Built-up) = 0.97</code> = "sticky" — เมืองเป็นเมืองตลอด</span>
+        <span class="term">Cropland <code>P(→ Built-up) = 0.13</code> = ทุก 10 ปีมี 13% ของ cropland กลายเป็นเมือง</span>
+      </div>
+    </section>
+
+    <!-- =========== POLL 4 =========== -->
+    <section>
+      <h2>🤔 Discussion: จำลองไป 20 ปี</h2>
+      <div class="poll">
+        <div class="q">ถ้า cropland → built-up ทุก 10 ปี 13%<br>แล้วในอีก 20 ปี cropland เหลือกี่ %?</div>
+        <div class="options" style="grid-template-columns: 1fr 1fr 1fr;">
+          <div class="opt"><strong>A.</strong> ~70%</div>
+          <div class="opt"><strong>B.</strong> ~60%</div>
+          <div class="opt"><strong>C.</strong> ~50%</div>
+        </div>
+      </div>
+      <div class="reveal-answer fragment">
+        <strong>คำตอบ: ~60%</strong><br>
+        <span class="small">
+        Step 1: 100% × (1 - 0.13) = 87%<br>
+        Step 2: 87% × (1 - 0.13) = 75.7%<br>
+        แต่ต้องคิดด้วยว่า class อื่นก็เปลี่ยนเป็น cropland เข้ามาบ้าง<br>
+        → ในทางปฏิบัติประมาณ ~60-70%
+        </span>
+      </div>
+    </section>
+
+    <!-- =========== ECONOMIC APPLICATIONS =========== -->
+    <section>
+      <h2>💰 ประยุกต์กับเศรษฐศาสตร์</h2>
+      <div class="two-col">
+        <div class="boxed">
+          <strong class="accent">Macroeconomics</strong>
+          <ul class="small" style="margin-top: 0.4em;">
+            <li>Night lights → proxy GDP (Henderson et al. 2012)</li>
+            <li>Built-up growth → urban productivity</li>
+            <li>Crop yield → agricultural output</li>
+          </ul>
+        </div>
+        <div class="boxed">
+          <strong class="accent">Microeconomics</strong>
+          <ul class="small" style="margin-top: 0.4em;">
+            <li>Hedonic pricing (green space → price)</li>
+            <li>Flood risk → insurance premium</li>
+            <li>Retail location analytics</li>
+          </ul>
+        </div>
+      </div>
+      <div class="boxed">
+        <strong class="accent">Policy</strong>
+        <ul class="small" style="margin-top: 0.4em;">
+          <li>Urban planning + zoning</li>
+          <li>Carbon stock estimate (LULC × carbon factor)</li>
+          <li>Land-use impact assessment</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- =========== THAI CONTEXT =========== -->
+    <section>
+      <h2>🇹🇭 ใช้ในบริบทไทย</h2>
+      <div style="text-align: left; font-size: 0.85em; margin-top: 0.5em;">
+        <ul>
+          <li>📈 <strong>Bangkok sprawl</strong> — ติดตาม 20 ปี เทียบ GDP รายปี</li>
+          <li>🏖️ <strong>EEC / Eastern Seaboard</strong> — urbanization ในพื้นที่อุตสาหกรรม</li>
+          <li>🌾 <strong>Northeast drought</strong> — ติดตาม NDVI ประเมินภัยแล้ง</li>
+          <li>🏔️ <strong>Chiang Mai urbanization</strong> — คืบเข้าไปในเขตป่า</li>
+          <li>🌊 <strong>Bangkok subsidence</strong> — SAR InSAR วัดการทรุด (advanced topic)</li>
+        </ul>
+      </div>
+      <div class="boxed">
+        <strong>แหล่งข้อมูลเพิ่มเติม:</strong><br>
+        <span class="small">
+        🏛️ <a href="https://www.gistda.or.th/">GISTDA</a> — ดาวเทียมไทย + data portal<br>
+        🌏 <a href="https://planetarycomputer.microsoft.com/">Microsoft Planetary Computer</a> — Landsat, Sentinel ฟรี<br>
+        📊 <a href="https://earthengine.google.com/">Google Earth Engine</a> — cloud-based (advanced)
+        </span>
+      </div>
+    </section>
+
+    <!-- =========== EXERCISES =========== -->
+    <section>
+      <h2>🧪 แบบฝึกหัด + Capstone Ideas</h2>
+      <div style="text-align: left; font-size: 0.78em;">
+        <strong class="accent">แบบฝึกหัด (เลือก ≥ 1 ข้อ)</strong>
+        <ol style="margin-top: 0.3em;">
+          <li>🇹🇭 <strong>เปลี่ยน AOI</strong> เป็นเมืองไทย (Bangkok, Chiang Mai, ...)</li>
+          <li>📅 <strong>เปรียบเทียบหลายปี</strong> (2008, 2018, 2025)</li>
+          <li>🎚️ <strong>ปรับ RF hyperparameters</strong> + GridSearchCV</li>
+          <li>💼 <strong>Corr(Built-up growth, GDP growth)</strong> ของจังหวัดไทย</li>
+          <li>🔮 <strong>Simulate 5 steps</strong> (ไปปี 2074)</li>
+        </ol>
+
+        <strong class="accent">💡 Capstone Ideas</strong>
+        <ul style="margin-top: 0.3em;">
+          <li>🏙️ Bangkok sprawl × GDP 20 ปี</li>
+          <li>🌾 Crop yield prediction (NDVI timeseries)</li>
+          <li>🌊 Flood risk mapping</li>
+          <li>🏦 Real estate zoning intelligence</li>
+          <li>🌳 Carbon stock estimation</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- =========== SUMMARY =========== -->
+    <section>
+      <h2>สรุป</h2>
+      <div style="text-align: left; font-size: 0.9em; margin-top: 0.5em;">
+        <p>✅ <strong>Satellite imagery</strong> = ข้อมูลฟรี real-time สำหรับ Econ research</p>
+        <p>✅ <strong>6 bands</strong> → spectral signature → แยกวัตถุ</p>
+        <p>✅ <strong>NDVI/NDWI/NDBI</strong> = indices เฉพาะสำหรับ พืช/น้ำ/เมือง</p>
+        <p>✅ <strong>Random Forest</strong> แยก LULC 8 classes</p>
+        <p>✅ <strong>CA-Markov</strong> จำลองอนาคตจาก transition pattern</p>
+        <p>✅ ใช้กับปัญหา Econ จริงได้ (GDP proxy, policy, real estate)</p>
+      </div>
+      <p style="margin-top: 1.5em; font-size: 1.1em;" class="accent center">คำถาม? 🙋</p>
+    </section>
+
+    <!-- =========== THANK YOU =========== -->
+    <section data-background-color="#1a1a1a">
+      <h1 style="color: white;">ขอบคุณครับ</h1>
+      <p style="color: #aaa; margin-top: 1em;">EC424 · 2/2568</p>
+      <p style="color: #888; font-size: 0.7em; margin-top: 2em;">
+        📧 tiraphap@econ.tu.ac.th<br>
+        🔗 github.com/tiraphap
+      </p>
+    </section>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    controls: true,
+    progress: true,
+    slideNumber: 'c/t',
+    transition: 'slide',
+    width: 1280,
+    height: 800,
+    margin: 0.04,
+    minScale: 0.3,
+    maxScale: 1.5,
+    plugins: [RevealHighlight, RevealNotes]
+  });
+</script>
+
+</body>
+</html>
