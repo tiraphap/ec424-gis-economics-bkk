@@ -1,6 +1,6 @@
-# EC424 — GIS สำหรับเศรษฐศาสตร์
+# EC424: GIS สำหรับเศรษฐศาสตร์
 
-**Workshop material** สำหรับวิชา EC424 — การใช้ภาพถ่ายดาวเทียม Landsat ตอบคำถามเชิงเศรษฐศาสตร์: การขยายตัวของเมือง การใช้ที่ดิน และการคาดคะเนอนาคต
+**Workshop material** สำหรับวิชา EC424 ว่าด้วยการใช้ภาพถ่ายดาวเทียม Landsat ตอบคำถามเชิงเศรษฐศาสตร์: การขยายตัวของเมือง การใช้ที่ดิน และการคาดคะเนอนาคต
 
 **Case study:** กรุงเทพฯ + ปริมณฑล · เปรียบเทียบ LULC (Land Use / Land Cover) ปี 2015 vs 2025 + จำลองอนาคต 20 ปีด้วย CA-Markov
 
@@ -10,8 +10,8 @@
 
 | ไฟล์ | คำอธิบาย |
 |------|---------|
-| [`ec424-gis-economics-bkk.ipynb`](ec424-gis-economics-bkk.ipynb) | Jupyter notebook หลัก — Random Forest classification + CA-Markov simulation |
-| [`slides.html`](slides.html) | Reveal.js slides สำหรับการบรรยาย — มี interactive polls |
+| [`ec424-gis-economics-bkk.ipynb`](ec424-gis-economics-bkk.ipynb) | Jupyter notebook หลัก (Random Forest classification + CA-Markov simulation) |
+| [`slides.html`](slides.html) | Reveal.js slides สำหรับการบรรยาย พร้อม interactive polls |
 
 ---
 
@@ -22,11 +22,11 @@
 1. เปิด [`ec424-gis-economics-bkk.ipynb`](ec424-gis-economics-bkk.ipynb) ใน Google Colab
 2. รัน cells ทีละตัวจากบนลงล่าง
 3. ใช้เวลา ~5-10 นาที (CPU เพียงพอ ไม่ต้องใช้ GPU)
-4. ไม่ต้องสมัคร account อะไร — ใช้ **Microsoft Planetary Computer** (public API) สำหรับ Landsat data
+4. ไม่ต้องสมัคร account อะไร · ใช้ **Microsoft Planetary Computer** (public API) สำหรับ Landsat data
 
 ### Slides
 
-เปิด `slides.html` ใน browser (Chrome / Firefox / Edge) — กด `F` สำหรับ fullscreen
+เปิด `slides.html` ใน browser (Chrome / Firefox / Edge) · กด `F` สำหรับ fullscreen
 
 หรือเปิดผ่าน local server:
 ```bash
@@ -42,21 +42,21 @@ python -m http.server 8000
 
 ## 📚 หัวข้อที่ครอบคลุม
 
-1. **Spectral Signatures** — แต่ละวัตถุสะท้อนแสงต่างกันยังไง (lay foundation)
-2. **NDVI / NDWI / NDBI** — ดัชนีสำหรับพืช / น้ำ / สิ่งก่อสร้าง
-3. **Random Forest classification** — pseudo-label จาก spectral indices (ไม่ต้องเตรียม training data)
-4. **LULC change analysis** — เปรียบเทียบพื้นที่ปี 2015 → 2025
-5. **CA-Markov simulation** — จำลองอนาคต 20 ปีข้างหน้า
-6. **Economic interpretation** — Urban sprawl, real estate, GDP proxy applications
+1. **Spectral Signatures**: แต่ละวัตถุสะท้อนแสงต่างกันยังไง (lay foundation)
+2. **NDVI / NDWI / NDBI**: ดัชนีสำหรับพืช / น้ำ / สิ่งก่อสร้าง
+3. **Random Forest classification**: pseudo-label จาก spectral indices (ไม่ต้องเตรียม training data)
+4. **LULC change analysis**: เปรียบเทียบพื้นที่ปี 2015 → 2025
+5. **CA-Markov simulation**: จำลองอนาคต 20 ปีข้างหน้า
+6. **Economic interpretation**: Urban sprawl, real estate, GDP proxy applications
 
 ---
 
 ## 🛠️ Stack
 
-- **Microsoft Planetary Computer** (STAC API) — Landsat Collection 2 Level 2
-- **rasterio / geopandas / shapely** — geospatial processing
-- **scikit-learn** — Random Forest classifier
-- **matplotlib** — visualization
+- **Microsoft Planetary Computer** (STAC API): Landsat Collection 2 Level 2
+- **rasterio / geopandas / shapely**: geospatial processing
+- **scikit-learn**: Random Forest classifier
+- **matplotlib**: visualization
 
 ทั้งหมดเป็น open-source · รันได้บน Colab ฟรี
 
@@ -82,7 +82,7 @@ python -m http.server 8000
 
 ## 📜 License
 
-[MIT](LICENSE) — ใช้/ดัดแปลง/แจกจ่ายได้อย่างเสรี
+[MIT](LICENSE) · ใช้/ดัดแปลง/แจกจ่ายได้อย่างเสรี
 
 ---
 
