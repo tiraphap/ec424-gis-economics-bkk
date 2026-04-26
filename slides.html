@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>EC424 — GIS for Economics</title>
+  <title>EC424: GIS for Economics</title>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
@@ -210,7 +210,7 @@
     <section>
       <h2>ทำไม Economist ต้องสนใจ GIS?</h2>
       <p class="hook left" style="margin-top: 0.5em;">
-        ลองคิดดู — ถ้าคุณเป็นนักวิจัย/ผู้ดำเนินนโยบาย แล้วอยาก <em>วัด GDP รายจังหวัด</em> แต่สถิติทางการช้า 2-3 ปี คุณจะทำยังไง?
+        ลองคิดดู: ถ้าคุณเป็นนักวิจัย/ผู้ดำเนินนโยบาย แล้วอยาก <em>วัด GDP รายจังหวัด</em> แต่สถิติทางการช้า 2-3 ปี คุณจะทำยังไง?
       </p>
       <div class="reveal-answer fragment">
         <strong>✨ Satellite imagery!</strong><br>
@@ -256,35 +256,35 @@
 
     <!-- =========== GLOSSARY 1 =========== -->
     <section>
-      <h2>📖 ศัพท์ที่ควรรู้ (1/2) — พื้นฐาน</h2>
+      <h2>📖 ศัพท์ที่ควรรู้ (1/2): พื้นฐาน</h2>
       <div class="glossary-grid">
-        <div class="item"><strong>GIS</strong> — Geographic Information System · ระบบจัดการข้อมูลเชิงพื้นที่</div>
-        <div class="item"><strong>Remote sensing</strong> — การดูโลกจากระยะไกล (ดาวเทียม/โดรน)</div>
-        <div class="item"><strong>Landsat</strong> — ดาวเทียม NASA (ฟรี) ถ่ายโลกทุก 16 วัน ความละเอียด 30m</div>
-        <div class="item"><strong>Pixel</strong> — หน่วยย่อยที่สุดของภาพ · Landsat = 30m × 30m</div>
-        <div class="item"><strong>Raster</strong> — ข้อมูลภาพแบบ grid (ตาราง)</div>
-        <div class="item"><strong>Vector</strong> — ข้อมูลแบบ point / line / polygon</div>
-        <div class="item"><strong>CRS</strong> — Coordinate Reference System (ระบบพิกัด เช่น WGS84)</div>
-        <div class="item"><strong>AOI</strong> — Area of Interest (bbox ที่เราสนใจ)</div>
-        <div class="item"><strong>Band</strong> — ช่วงความถี่แสงที่ดาวเทียมวัด</div>
-        <div class="item"><strong>Spectral</strong> — เกี่ยวกับสเปกตรัมของแสง</div>
+        <div class="item"><strong>GIS</strong>: Geographic Information System · ระบบจัดการข้อมูลเชิงพื้นที่</div>
+        <div class="item"><strong>Remote sensing</strong>: การดูโลกจากระยะไกล (ดาวเทียม/โดรน)</div>
+        <div class="item"><strong>Landsat</strong>: ดาวเทียม NASA (ฟรี) ถ่ายโลกทุก 16 วัน ความละเอียด 30m</div>
+        <div class="item"><strong>Pixel</strong>: หน่วยย่อยที่สุดของภาพ · Landsat = 30m × 30m</div>
+        <div class="item"><strong>Raster</strong>: ข้อมูลภาพแบบ grid (ตาราง)</div>
+        <div class="item"><strong>Vector</strong>: ข้อมูลแบบ point / line / polygon</div>
+        <div class="item"><strong>CRS</strong>: Coordinate Reference System (ระบบพิกัด เช่น WGS84)</div>
+        <div class="item"><strong>AOI</strong>: Area of Interest (bbox ที่เราสนใจ)</div>
+        <div class="item"><strong>Band</strong>: ช่วงความถี่แสงที่ดาวเทียมวัด</div>
+        <div class="item"><strong>Spectral</strong>: เกี่ยวกับสเปกตรัมของแสง</div>
       </div>
     </section>
 
     <!-- =========== GLOSSARY 2 =========== -->
     <section>
-      <h2>📖 ศัพท์ที่ควรรู้ (2/2) — Analysis</h2>
+      <h2>📖 ศัพท์ที่ควรรู้ (2/2): Analysis</h2>
       <div class="glossary-grid">
-        <div class="item"><strong>LULC</strong> — Land Use / Land Cover · ประเภทที่ดิน (พืช, เมือง, น้ำ, ...)</div>
-        <div class="item"><strong>NDVI</strong> — Normalized Difference Vegetation Index · ดัชนีพืช</div>
-        <div class="item"><strong>NDWI</strong> — Normalized Difference Water Index · ดัชนีน้ำ</div>
-        <div class="item"><strong>NDBI</strong> — Normalized Difference Built-up Index · ดัชนีเมือง</div>
-        <div class="item"><strong>Classification</strong> — แยกประเภท (ใช้ ML)</div>
-        <div class="item"><strong>Training data</strong> — จุดที่ label แล้ว ใช้สอน ML</div>
-        <div class="item"><strong>Random Forest</strong> — ML algorithm ที่ใช้ decision trees หลายต้น</div>
-        <div class="item"><strong>Transition matrix</strong> — ตาราง P(class A → class B)</div>
-        <div class="item"><strong>CA-Markov</strong> — Cellular Automata + Markov Chain จำลองอนาคต</div>
-        <div class="item"><strong>STAC</strong> — SpatioTemporal Asset Catalog · มาตรฐาน catalog ภาพดาวเทียม</div>
+        <div class="item"><strong>LULC</strong>: Land Use / Land Cover · ประเภทที่ดิน (พืช, เมือง, น้ำ, ...)</div>
+        <div class="item"><strong>NDVI</strong>: Normalized Difference Vegetation Index · ดัชนีพืช</div>
+        <div class="item"><strong>NDWI</strong>: Normalized Difference Water Index · ดัชนีน้ำ</div>
+        <div class="item"><strong>NDBI</strong>: Normalized Difference Built-up Index · ดัชนีเมือง</div>
+        <div class="item"><strong>Classification</strong>: แยกประเภท (ใช้ ML)</div>
+        <div class="item"><strong>Training data</strong>: จุดที่ label แล้ว ใช้สอน ML</div>
+        <div class="item"><strong>Random Forest</strong>: ML algorithm ที่ใช้ decision trees หลายต้น</div>
+        <div class="item"><strong>Transition matrix</strong>: ตาราง P(class A → class B)</div>
+        <div class="item"><strong>CA-Markov</strong>: Cellular Automata + Markov Chain จำลองอนาคต</div>
+        <div class="item"><strong>STAC</strong>: SpatioTemporal Asset Catalog · มาตรฐาน catalog ภาพดาวเทียม</div>
       </div>
     </section>
 
@@ -320,7 +320,7 @@
     <section>
       <h2>🤔 Poll: คุณคิดว่า...</h2>
       <div class="poll">
-        <div class="q">ในภาพดาวเทียม NIR (Near Infrared) — <br>วัตถุไหนสะท้อนมากที่สุด?</div>
+        <div class="q">ในภาพดาวเทียม NIR (Near Infrared) <br>วัตถุไหนสะท้อนมากที่สุด?</div>
         <div class="options">
           <div class="opt"><strong>A.</strong> น้ำทะเล</div>
           <div class="opt"><strong>B.</strong> ป่าไม้สุขภาพดี</div>
@@ -329,7 +329,7 @@
         </div>
       </div>
       <div class="reveal-answer fragment">
-        <strong>คำตอบ: B — ป่าไม้สุขภาพดี 🌲</strong><br>
+        <strong>คำตอบ: B (ป่าไม้สุขภาพดี 🌲)</strong><br>
         <span class="small">
         Chlorophyll ในใบไม้ดูดซับ Red แต่สะท้อน NIR มาก (ธรรมชาติทำให้ใบไม่ร้อน)<br>
         → นี่คือเหตุผลที่ NDVI = (NIR - Red) / (NIR + Red) วัดพืชได้ดี
@@ -339,7 +339,7 @@
 
     <!-- =========== SPECTRAL SIGNATURES =========== -->
     <section>
-      <h2>Spectral Signatures — "ลายนิ้วมือ" ของวัตถุ</h2>
+      <h2>Spectral Signatures: "ลายนิ้วมือ" ของวัตถุ</h2>
       <p class="left">แต่ละวัตถุสะท้อนแสงใน 6 bands ด้วย pattern เฉพาะ:</p>
       <div class="boxed" style="font-size: 0.82em;">
         <strong>🌲 พืช:</strong> Red ต่ำ → NIR สูงมาก (chlorophyll) → SWIR ปานกลาง<br>
@@ -348,14 +348,14 @@
         <strong>🌾 เกษตร:</strong> คล้ายพืชแต่ขึ้นกับช่วงเวลา (เก็บเกี่ยวแล้วจะต่ำ)
       </div>
       <div class="analogy">
-        <strong>อุปมา:</strong> เหมือน ECG ของคน — แต่ละคนมี pattern หัวใจต่างกัน
+        <strong>อุปมา:</strong> เหมือน ECG ของคน: แต่ละคนมี pattern หัวใจต่างกัน
         Spectral signature = "ECG" ของวัตถุ
       </div>
     </section>
 
     <!-- =========== INDICES =========== -->
     <section>
-      <h2>Spectral Indices — วัดเฉพาะที่สนใจ</h2>
+      <h2>Spectral Indices: วัดเฉพาะที่สนใจ</h2>
       <p class="left small">แทนใช้ทุก band เราเอา 2 bands มา <em>normalize</em> → ค่าอยู่ -1 ถึง +1</p>
       <table>
         <thead>
@@ -384,28 +384,28 @@
 
     <!-- =========== LULC CLASSIFICATION =========== -->
     <section>
-      <h2>LULC Classification — แยก 8 ประเภทที่ดิน</h2>
+      <h2>LULC Classification: แยก 8 ประเภทที่ดิน</h2>
       <p class="left small">Index 3 ตัวเห็นภาพคร่าว ๆ แต่ถ้าอยาก <strong>แยกได้ละเอียดกว่า</strong> ต้องใช้ ML</p>
       <table>
         <tbody>
           <tr>
-            <td style="background:#006400;color:white;">🌲 Vegetation</td>
-            <td style="background:#FFA500;color:white;">🌿 Shrubland</td>
+            <td style="background:#006400;color: white;">🌲 Vegetation</td>
+            <td style="background:#FFA500;color: white;">🌿 Shrubland</td>
             <td style="background:#90EE90;">🌾 Grassland</td>
             <td style="background:#FFFF00;">🌾 Cropland</td>
           </tr>
           <tr>
-            <td style="background:#FF0000;color:white;">🏙️ Built-up</td>
+            <td style="background:#FF0000;color: white;">🏙️ Built-up</td>
             <td style="background:#D3D3D3;">🏜️ Bareland</td>
-            <td style="background:#0000FF;color:white;">💧 Water body</td>
-            <td style="background:#000;color:white;">❔ Unclassified</td>
+            <td style="background:#0000FF;color: white;">💧 Water body</td>
+            <td style="background:#000;color: white;">❔ Unclassified</td>
           </tr>
         </tbody>
       </table>
       <div class="boxed" style="font-size: 0.82em;">
         <strong>Workflow:</strong>
         <ol style="margin-top: 0.3em;">
-          <li>Training points (GeoJSON) — human label แล้ว ~หลายร้อยจุด</li>
+          <li>Training points (GeoJSON): human label แล้ว ~หลายร้อยจุด</li>
           <li>ดึงค่า 6 bands ที่แต่ละจุด → X (features)</li>
           <li>Train Random Forest (X → class)</li>
           <li>Apply model ทุก pixel ในภาพ → LULC map</li>
@@ -416,7 +416,7 @@
     <!-- =========== RANDOM FOREST =========== -->
     <section>
       <h2>Random Forest Intuition</h2>
-      <p class="left small">Random Forest = <strong>ป่าของ Decision Trees</strong> — แต่ละต้น vote แล้วเอา majority</p>
+      <p class="left small">Random Forest = <strong>ป่าของ Decision Trees</strong>: แต่ละต้น vote แล้วเอา majority</p>
       <div class="analogy">
         <strong>อุปมา:</strong> เหมือน panel ผู้เชี่ยวชาญ 100 คน<br>
         แต่ละคนเห็นข้อมูลแค่บางส่วน · vote → คำตอบของกลุ่ม<br>
@@ -442,7 +442,7 @@ accuracy = model.score(X_test, y_test)</code></pre>
     <section>
       <h2>🤔 Poll: Random Forest ของเรา</h2>
       <div class="poll">
-        <div class="q">ใน LULC 8 classes — คุณคิดว่า class ไหนจะ<br><em>แยกยากที่สุด</em> (accuracy ต่ำ)?</div>
+        <div class="q">ใน LULC 8 classes: คุณคิดว่า class ไหนจะ<br><em>แยกยากที่สุด</em> (accuracy ต่ำ)?</div>
         <div class="options">
           <div class="opt"><strong>A.</strong> Water body (น้ำ)</div>
           <div class="opt"><strong>B.</strong> Built-up (เมือง)</div>
@@ -451,7 +451,7 @@ accuracy = model.score(X_test, y_test)</code></pre>
         </div>
       </div>
       <div class="reveal-answer fragment">
-        <strong>คำตอบ: C — Grassland vs Cropland 🌾</strong><br>
+        <strong>คำตอบ: C (Grassland vs Cropland 🌾)</strong><br>
         <span class="small">
         ทั้งสอง class เป็นพืช NDVI คล้ายกัน แยกยาก<br>
         ทางแก้: ใช้ SWIR ช่วย (ดิน), ใช้ timeseries (cropland เปลี่ยนตามฤดู)<br>
@@ -464,7 +464,7 @@ accuracy = model.score(X_test, y_test)</code></pre>
     <section>
       <h2>Case Study: กรุงเทพฯ + ปริมณฑล (2015 → 2025)</h2>
       <p class="left small" style="margin-top: 0.5em;">
-        <strong>Bangkok</strong> — เมืองหลวงของไทย · ภาคกลาง · ~10 ล้านคน (รวมปริมณฑล)
+        <strong>Bangkok</strong>: เมืองหลวงของไทย · ภาคกลาง · ~10 ล้านคน (รวมปริมณฑล)
       </p>
       <div class="two-col">
         <div class="boxed">
@@ -500,7 +500,7 @@ accuracy = model.score(X_test, y_test)</code></pre>
         </div>
       </div>
       <p class="small center" style="margin-top: 1em;">
-        🧠 เดาก่อน — เราจะเห็นคำตอบจริงตอนรัน notebook
+        🧠 เดาก่อน: เราจะเห็นคำตอบจริงตอนรัน notebook
       </p>
     </section>
 
@@ -570,7 +570,7 @@ change = ((area_2025 - area_2015) / area_2015) * 100</code></pre>
       </p>
       <div class="jargon-box">
         <strong>ข้อสังเกต:</strong>
-        <span class="term">Built-up <code>P(→ Built-up) = 0.97</code> = "sticky" — เมืองเป็นเมืองตลอด</span>
+        <span class="term">Built-up <code>P(→ Built-up) = 0.97</code> = "sticky": เมืองเป็นเมืองตลอด</span>
         <span class="term">Cropland <code>P(→ Built-up) = 0.13</code> = ทุก 10 ปีมี 13% ของ cropland กลายเป็นเมือง</span>
       </div>
     </section>
@@ -633,19 +633,19 @@ change = ((area_2025 - area_2015) / area_2015) * 100</code></pre>
       <h2>🇹🇭 ใช้ในบริบทไทย</h2>
       <div style="text-align: left; font-size: 0.85em; margin-top: 0.5em;">
         <ul>
-          <li>📈 <strong>Bangkok sprawl</strong> — ติดตาม 20 ปี เทียบ GDP รายปี</li>
-          <li>🏖️ <strong>EEC / Eastern Seaboard</strong> — urbanization ในพื้นที่อุตสาหกรรม</li>
-          <li>🌾 <strong>Northeast drought</strong> — ติดตาม NDVI ประเมินภัยแล้ง</li>
-          <li>🏔️ <strong>Chiang Mai urbanization</strong> — คืบเข้าไปในเขตป่า</li>
-          <li>🌊 <strong>Bangkok subsidence</strong> — SAR InSAR วัดการทรุด (advanced topic)</li>
+          <li>📈 <strong>Bangkok sprawl</strong>: ติดตาม 20 ปี เทียบ GDP รายปี</li>
+          <li>🏖️ <strong>EEC / Eastern Seaboard</strong>: urbanization ในพื้นที่อุตสาหกรรม</li>
+          <li>🌾 <strong>Northeast drought</strong>: ติดตาม NDVI ประเมินภัยแล้ง</li>
+          <li>🏔️ <strong>Chiang Mai urbanization</strong>: คืบเข้าไปในเขตป่า</li>
+          <li>🌊 <strong>Bangkok subsidence</strong>: SAR InSAR วัดการทรุด (advanced topic)</li>
         </ul>
       </div>
       <div class="boxed">
         <strong>แหล่งข้อมูลเพิ่มเติม:</strong><br>
         <span class="small">
-        🏛️ <a href="https://www.gistda.or.th/">GISTDA</a> — ดาวเทียมไทย + data portal<br>
-        🌏 <a href="https://planetarycomputer.microsoft.com/">Microsoft Planetary Computer</a> — Landsat, Sentinel ฟรี<br>
-        📊 <a href="https://earthengine.google.com/">Google Earth Engine</a> — cloud-based (advanced)
+        🏛️ <a href="https://www.gistda.or.th/">GISTDA</a>: ดาวเทียมไทย + data portal<br>
+        🌏 <a href="https://planetarycomputer.microsoft.com/">Microsoft Planetary Computer</a>: Landsat, Sentinel ฟรี<br>
+        📊 <a href="https://earthengine.google.com/">Google Earth Engine</a>: cloud-based (advanced)
         </span>
       </div>
     </section>
